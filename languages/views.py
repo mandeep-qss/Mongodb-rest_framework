@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets, generics, permissions
-from languages.models import Language, Paradigm, Programmer
-from languages.serializers import LanguageSerializer, ParadigmSerializer, ProgrammerSerializer, UserSerializer, RegisterSerializer
+from languages.models import Language, Paradigm, Programmer, Book, Author
+from languages.serializers import LanguageSerializer, ParadigmSerializer, ProgrammerSerializer, UserSerializer, RegisterSerializer, BookSerializer, AuthorSerializer
 from rest_framework.response import Response
 from knox.models import AuthToken
 from django.contrib.auth import login
@@ -13,7 +13,7 @@ from knox.views import LoginView as KnoxLoginView
 class LanguageView(viewsets.ModelViewSet):
     queryset = Language.objects.all()
     serializer_class = LanguageSerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    # permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
 class ParadigmView(viewsets.ModelViewSet):
     queryset = Paradigm.objects.all()
@@ -24,6 +24,13 @@ class ProgrammerView(viewsets.ModelViewSet):
     serializer_class = ProgrammerSerializer
 
 
+class BookView(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+class AuthorView(viewsets.ModelViewSet):
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
 
 
 # Register API

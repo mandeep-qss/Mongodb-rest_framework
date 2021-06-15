@@ -1,5 +1,7 @@
 from rest_framework import serializers
-from languages.models import Language, Paradigm, Programmer
+from languages.models import Language, Paradigm, Programmer, Book, Author
+from rest_framework import serializers
+from django.contrib.auth.models import User
 
 class LanguageSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -16,8 +18,19 @@ class ProgrammerSerializer(serializers.HyperlinkedModelSerializer):
         model = Programmer
         fields = ('id','url','name','languages')
 
-from rest_framework import serializers
-from django.contrib.auth.models import User
+
+class BookSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Book
+        fields = ('id','url','name','price','description','author')
+
+class AuthorSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Author
+        fields = ('id','url','name')
+
+
+
 
 
 # User Serializer
